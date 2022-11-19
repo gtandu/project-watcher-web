@@ -1,4 +1,4 @@
-node (label: 'master') {
+node (label: 'maitre') {
   stage('Clean Workspace'){
     cleanWs()
   }
