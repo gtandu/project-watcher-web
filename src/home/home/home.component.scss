@@ -1,0 +1,8 @@
+img {
+  width: 15.875rem;
+  height: 24.25rem;
+
+  &:not(:last-child) {
+    margin-right: 1.25rem;
+  }
+}
