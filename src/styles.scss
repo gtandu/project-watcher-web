@@ -6,11 +6,13 @@ html, body {
   display: flex;
   width: 15.875rem;
   height: 0.688rem;
-  .mat-progress-bar-fill::after {
+  .mdc-linear-progress__bar {
     background-color: #FF75CB;
   }
-
-  .mat-progress-bar-buffer {
-    background: #14142BB2;
+  .mdc-linear-progress__bar-inner {
+    border-color: #FF75CB;
+  }
+  .mdc-linear-progress__buffer {
+    background: #14142B;
   }
 }
