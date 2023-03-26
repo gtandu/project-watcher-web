@@ -1,2 +1,38 @@
-<img *ngFor="let manga of mangas" [src]="manga.coverPictureUrl">
+<h3>Extended Fab</h3>
+<div class="example-button-row">
+  <button mat-fab extended color="primary">
+    <mat-icon>favorite</mat-icon>
+    Primary
+  </button>
+  <button mat-fab extended color="accent">
+    <mat-icon>favorite</mat-icon>
+    Accent
+  </button>
+  <button mat-fab extended color="warn">
+    <mat-icon>favorite</mat-icon>
+    Warn
+  </button>
+  <button mat-fab extended disabled>
+    <mat-icon>favorite</mat-icon>
+    Disabled
+  </button>
+  <a mat-fab extended routerLink=".">
+    <mat-icon>favorite</mat-icon>
+    Link
+  </a>
+</div>
 
+<div class="header">
+  <button mat-fab extended class="button-add-manga">
+    <mat-icon>add</mat-icon>
+    Ajouter un manga
+  </button>
+</div>
+<div class="manga-container">
+  <ng-container *ngFor="let manga of mangas">
+    <div class="manga-cover-container">
+      <img class="manga-cover" [src]="manga.coverPictureUrl" alt="Manga cover">
+      <mat-progress-bar class="manga-progress" mode="determinate" value="40"></mat-progress-bar>
+    </div>
+  </ng-container>
+</div>

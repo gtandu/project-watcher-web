@@ -1,8 +1,40 @@
-img {
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.button-add-manga {
+  background-color: #610BEF;
+}
+
+.manga-container {
+  display: flex;
+  justify-content: center;
+}
+
+.manga-cover-container {
+  display: inline-block;
   width: 15.875rem;
   height: 24.25rem;
+  margin-bottom: 2.5rem;
 
   &:not(:last-child) {
-    margin-right: 1.25rem;
+    margin-right: 2.5rem;
+  }
+
+  .manga-cover {
+    display: flex;
+    cursor: pointer;
+    max-height: 100%;
+    width: 15.875rem;
+  }
+
+  .manga-progress {
+    display: flex;
+    width: 15.875rem;
+    height: 0.688rem;
   }
 }
+
+
