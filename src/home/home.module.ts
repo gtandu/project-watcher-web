@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 
@@ -16,9 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
     ],
   imports: [
     CommonModule,
-    MatProgressBarModule,
+    MatIconModule,
     MatButtonModule,
-    MatIconModule
+    MatProgressBarModule
   ]
 })
 export class HomeModule { }
