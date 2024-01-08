@@ -8,8 +8,8 @@ import { Manga } from "../models/manga";
 })
 export class MangasService {
 
-  private BACKEND_ENDPOINT = "http://localhost:7001/mangas"
-  constructor(private http: HttpClient) { }
+  private readonly BACKEND_ENDPOINT = "http://localhost:7001/mangas"
+  constructor(private readonly http: HttpClient) { }
 
   public getById(mangaId: string): Observable<Manga> {
     return this.http.get<Manga>(`${this.BACKEND_ENDPOINT}/${mangaId}`)//localhost:7001/mangas/test");

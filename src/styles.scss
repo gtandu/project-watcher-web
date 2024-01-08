@@ -4,8 +4,6 @@ html, body {
 }
 .manga-progress {
   display: flex;
-  width: 15.875rem;
-  height: 0.688rem;
   .mdc-linear-progress__bar {
     background-color: #FF75CB;
   }
@@ -16,3 +14,4 @@ html, body {
     background: #14142B;
   }
 }
+

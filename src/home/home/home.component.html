@@ -1,14 +1,29 @@
-<div class="header">
-  <button mat-raised-button class="button-add-manga">
-    <mat-icon>add</mat-icon>
-    Ajouter un manga
-  </button>
-</div>
-<div class="manga-container">
-  <ng-container *ngFor="let manga of mangas">
-    <div class="manga-cover-container">
-      <img class="manga-cover" [src]="manga.coverPictureUrl" alt="Manga cover">
-      <mat-progress-bar class="manga-progress" mode="determinate" value="40"></mat-progress-bar>
-    </div>
-  </ng-container>
-</div>
+<mat-sidenav-container [hasBackdrop]="false">
+    <mat-sidenav #sidenav class="home-sidenav" mode="side" position="end" fixedInViewport="true" fixedTopGap="0"
+                 fixedBottomGap="0">
+        <p>Back Button  Ajouter un manga</p>
+        <p>Field search </p>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="header">
+            <button mat-raised-button color="primary" class="button-add-manga">
+                <mat-icon>add</mat-icon>
+                Ajouter un manga
+            </button>
+        </div>
+
+        <div class="manga-container">
+            <ng-container *ngFor="let manga of mangas">
+                <div class="manga-cover-container">
+                    <img class="manga-cover" [src]="manga.coverPictureUrl" alt="Manga cover" (click)="sidenav.toggle()">
+                    <mat-progress-bar class="manga-progress" mode="determinate" value="40"></mat-progress-bar>
+                </div>
+            </ng-container>
+        </div>
+    </mat-sidenav-content>
+
+
+</mat-sidenav-container>
+

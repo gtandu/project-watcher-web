@@ -11,7 +11,11 @@
 
 .manga-container {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.home-sidenav {
+  width: 39.9375rem;
 }
 
 .manga-cover-container {
@@ -28,14 +32,16 @@
     display: flex;
     cursor: pointer;
     max-height: 100%;
-    width: 15.875rem;
+    width: 15.6875rem;
+    height: 23.875rem;
   }
 
-  .manga-progress {
-    display: flex;
-    width: 15.875rem;
-    height: 0.688rem;
+  .mat-mdc-progress-bar {
+    --mdc-linear-progress-track-height: 0.6875rem;
+    --mdc-linear-progress-active-indicator-height: 0.6875rem
   }
 }
+
+
 
 
