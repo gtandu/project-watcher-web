@@ -14,8 +14,21 @@
   flex-wrap: wrap;
 }
 
+.sidenav-header {
+  display: flex;
+  .sidenav-header-title {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.field-search-manga {
+  width: 100%;
+}
+
 .home-sidenav {
   width: 39.9375rem;
+  padding: 0 1.875rem;
 }
 
 .manga-cover-container {

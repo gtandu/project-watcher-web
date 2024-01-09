@@ -33,7 +33,6 @@ export class MangaDexService implements MangaDexInterface {
       .set("limit", this.LIMIT)
       .set("includes[]", "cover_art");
 
-    console.log(httpParams);
     return this.http.get<MangaDexResponse>(`${this.BASE_URL}/manga`, {params: httpParams});
   }
 }

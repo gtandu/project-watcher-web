@@ -1,14 +1,49 @@
 <mat-sidenav-container [hasBackdrop]="false">
     <mat-sidenav #sidenav class="home-sidenav" mode="side" position="end" fixedInViewport="true" fixedTopGap="0"
                  fixedBottomGap="0">
-        <p>Back Button  Ajouter un manga</p>
-        <p>Field search </p>
-
+        <div class="sidenav-header">
+            <div class="sidenav-header-back-button">
+                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
+                        (click)="sidenav.close()">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+            </div>
+            <div class="sidenav-header-title">
+                <p>Ajouter un manga</p>
+            </div>
+        </div>
+        <div class="field-container-search-manga">
+            <form class="example-form">
+                <mat-form-field class="field-search-manga">
+                    <mat-label>Rechercher un manga</mat-label>
+                    <input matInput
+                           aria-label="State"
+                           [matAutocomplete]="auto"
+                           [formControl]="searchFormControl">
+                    <mat-icon matPrefix>search</mat-icon>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="updateSelectedManga($event)" [displayWith]="displayMangaName">
+                        <ng-container *ngFor="let foundedManga of searchResultMangas">
+                            <mat-option [value]="foundedManga">
+                                <img alt="" class="example-option-img" [src]="foundedManga.coverPictureUrl"
+                                     height="100">
+                                <span>{{foundedManga.name}}</span>
+                            </mat-option>
+                        </ng-container>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+        </div>
+        <div class="cover-rating" *ngIf="selectedManga">
+            <div class="manga-cover-container">
+                <img class="manga-cover" [src]="selectedManga?.coverPictureUrl" alt="Manga cover">
+            </div>
+        </div>
+        <div class="fields-data"></div>
     </mat-sidenav>
 
     <mat-sidenav-content>
         <div class="header">
-            <button mat-raised-button color="primary" class="button-add-manga">
+            <button mat-raised-button color="primary" class="button-add-manga" (click)="sidenav.open()">
                 <mat-icon>add</mat-icon>
                 Ajouter un manga
             </button>
@@ -17,7 +52,7 @@
         <div class="manga-container">
             <ng-container *ngFor="let manga of mangas">
                 <div class="manga-cover-container">
-                    <img class="manga-cover" [src]="manga.coverPictureUrl" alt="Manga cover" (click)="sidenav.toggle()">
+                    <img class="manga-cover" [src]="manga.coverPictureUrl" alt="Manga cover">
                     <mat-progress-bar class="manga-progress" mode="determinate" value="40"></mat-progress-bar>
                 </div>
             </ng-container>
