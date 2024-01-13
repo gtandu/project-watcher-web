@@ -1,15 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'node_modules/css-star-rating/css/star-rating.css';
+
 html, body {
   height: 100%;
 }
+
+star-rating .star-filled, star-rating .star-empty, star-rating .star-half {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+star-rating .star-container {
+  margin-left: 0;
+  margin-right: 0;
+  .star {
+    cursor: pointer;
+  }
+}
+
 .manga-progress {
   display: flex;
+
   .mdc-linear-progress__bar {
     background-color: #FF75CB;
   }
+
   .mdc-linear-progress__bar-inner {
     border-color: #FF75CB;
   }
+
   .mdc-linear-progress__buffer {
     background: #14142B;
   }

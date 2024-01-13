@@ -1,45 +1,30 @@
-import {Component, OnInit} from '@angular/core';
-import {Manga} from "../../models/manga";
-import {MangasService} from "../../services/mangas.service";
-import {FormControl} from "@angular/forms";
-import {of, switchMap} from "rxjs";
-import {MangaDexManagerService} from "../../managers/manga-dex-manager.service";
-import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { Manga } from '../../models/manga';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-
-  public mangas: Manga[] = [];
-  public searchFormControl = new FormControl('');
-  public searchResultMangas: Manga[] = [];
+export class HomeComponent implements OnDestroy {
+  public mobileQuery: MediaQueryList;
+  private readonly _mobileQueryListener: () => void;
   public selectedManga: Manga | undefined;
 
-  constructor(private readonly mangasService: MangasService, private readonly mangaDexManagerService: MangaDexManagerService) { }
-
-  ngOnInit(): void {
-    this.mangasService.getAll().subscribe((mangas) => {
-      this.mangas = mangas;
-    })
-
-    this.searchFormControl.valueChanges.pipe(
-        switchMap((searchKey) => {
-          return searchKey && searchKey.length >= 3 ? this.mangaDexManagerService.searchMangaByTitle(searchKey) : of([]);
-        })
-    ).subscribe((searchResult) => {
-      this.searchResultMangas = searchResult;
-    });
+  constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly media: MediaMatcher
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 39.9375rem)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
   }
 
-  public updateSelectedManga(selected: MatAutocompleteSelectedEvent){
-    this.selectedManga = selected.option.value;
+  public onSelectedManga(selectedManga: Manga) {
+    this.selectedManga = selectedManga;
   }
-
-  public displayMangaName(manga: Manga): string {
-    return manga?.name ? manga.name : '';
+  ngOnDestroy(): void {
+    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
-
 }

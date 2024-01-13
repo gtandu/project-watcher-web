@@ -1,6 +1,6 @@
-import { Observable } from "rxjs";
-import { Manga } from "../../models/manga";
-import { MangaDexAuthResponse, MangaDexResponse } from "../../models/mangadex/manga-dex-object";
+import { Observable } from 'rxjs';
+import { Manga } from '../../models/manga';
+import { MangaDexAuthResponse, MangaDexResponse } from '../../models/mangadex/manga-dex-object';
 
 export interface MangaDexInterface {
   login(): Observable<MangaDexAuthResponse>;

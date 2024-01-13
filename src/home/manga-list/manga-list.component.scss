@@ -1,0 +1,28 @@
+.manga-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.manga-cover-container {
+  display: inline-block;
+  width: 15.875rem;
+  height: 24.25rem;
+  margin-bottom: 2.5rem;
+
+  &:not(:last-child) {
+    margin-right: 2.5rem;
+  }
+
+  .manga-cover {
+    display: flex;
+    cursor: pointer;
+    max-height: 100%;
+    width: 15.6875rem;
+    height: 23.875rem;
+  }
+
+  .mat-mdc-progress-bar {
+    --mdc-linear-progress-track-height: 0.6875rem;
+    --mdc-linear-progress-active-indicator-height: 0.6875rem
+  }
+}

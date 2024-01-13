@@ -8,9 +8,8 @@ describe('SearchMangaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchMangaComponent ]
-    })
-    .compileComponents();
+      declarations: [SearchMangaComponent]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchMangaComponent);
     component = fixture.componentInstance;

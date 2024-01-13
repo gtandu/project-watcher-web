@@ -1,0 +1,24 @@
+<div class="form-manga-container">
+  <form class="form-manga-fields" [formGroup]="mangaForm">
+    <mat-form-field>
+      <mat-label>Nom du manga</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Etat</mat-label>
+      <mat-select>
+        <mat-option value="one">En cours</mat-option>
+        <mat-option value="two">Terminé</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Commentaire</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Source</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <button mat-raised-button color="primary">Sauvegarder</button>
+  </form>
+</div>

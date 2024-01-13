@@ -9,11 +9,6 @@
   background-color: #610BEF;
 }
 
-.manga-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .sidenav-header {
   display: flex;
   .sidenav-header-title {
@@ -22,37 +17,28 @@
   }
 }
 
-.field-search-manga {
-  width: 100%;
-}
-
 .home-sidenav {
-  width: 39.9375rem;
   padding: 0 1.875rem;
 }
-
-.manga-cover-container {
-  display: inline-block;
-  width: 15.875rem;
-  height: 24.25rem;
-  margin-bottom: 2.5rem;
-
-  &:not(:last-child) {
-    margin-right: 2.5rem;
-  }
-
-  .manga-cover {
+.founded-manga-cover-and-rating-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .founded-manga-cover-container {
     display: flex;
-    cursor: pointer;
-    max-height: 100%;
-    width: 15.6875rem;
-    height: 23.875rem;
+    flex-direction: column;
+    margin-left: 5.89rem;
+    align-items: center;
   }
-
-  .mat-mdc-progress-bar {
-    --mdc-linear-progress-track-height: 0.6875rem;
-    --mdc-linear-progress-active-indicator-height: 0.6875rem
+  .founded-manga-rating-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 7.78rem;
   }
+}
+.founded-manga-cover {
+  width: 6rem;
+  height: 9.125rem;
 }
 
 

@@ -119,6 +119,9 @@
     ]
   },
   "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    },
     "@angular-eslint/schematics:application": {
       "setParserOptionsProject": true
     },

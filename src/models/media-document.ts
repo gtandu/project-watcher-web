@@ -1,4 +1,4 @@
-import { BaseDocument } from "./base-document";
+import { BaseDocument } from './base-document';
 
 export class MediaDocument extends BaseDocument {
   name: string;
@@ -8,7 +8,6 @@ export class MediaDocument extends BaseDocument {
   rate: number;
   review: string;
   state: string;
-
 
   constructor(id: string, name: string, description: string, releasedDate: number, coverPictureUrl: string, rate: number, review: string, state: string) {
     super(id);
