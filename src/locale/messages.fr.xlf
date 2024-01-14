@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="8496520824120302513" datatype="html">
+        <source>Add a manga</source>
+        <target>Ajouter un manga</target>
+      </trans-unit>
+      <trans-unit id="2961216956911250993" datatype="html">
+        <source>Add a manga</source>
+        <target>Ajouter un manga</target>
+      </trans-unit>
+      <trans-unit id="5639297788212274461" datatype="html">
+        <source>Rate</source>
+        <target>Note</target>
+      </trans-unit>
+      <trans-unit id="6346052435589748504" datatype="html">
+        <source>Manga&apos;s name</source>
+        <target>Nom du manga</target>
+      </trans-unit>
+      <trans-unit id="1051352842359202998" datatype="html">
+        <source>Manga&apos;s state</source>
+        <target>Etat du manga</target>
+      </trans-unit>
+      <trans-unit id="3807699453257291879" datatype="html">
+        <source>Comments</source>
+        <target>Commentaire</target>
+      </trans-unit>
+      <trans-unit id="257711211906833471" datatype="html">
+        <source>Reading source</source>
+        <target>Source de lecture</target>
+      </trans-unit>
+      <trans-unit id="3768927257183755959" datatype="html">
+        <source>Save</source>
+        <target>Sauvegarder</target>
+      </trans-unit>
+      <trans-unit id="8678355956604725072" datatype="html">
+        <source>Search manga</source>
+        <target>Rechercher un manga</target>
+      </trans-unit>
+      <trans-unit id="2497863878315153442" datatype="html">
+        <source>TTTTT</source>
+        <target state="new">TTTTT</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

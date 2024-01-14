@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Manga } from '../models/manga';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { Manga } from '../models/manga';
 })
 export class MangasService {
   private readonly BACKEND_ENDPOINT = 'http://localhost:7001/mangas';
+  public mangaRefreshSubject = new Subject<void>();
   constructor(private readonly http: HttpClient) {}
 
   public getById(mangaId: string): Observable<Manga> {

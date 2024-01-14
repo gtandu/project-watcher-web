@@ -1,5 +1,5 @@
 <div class="manga-container">
-  <ng-container *ngFor="let manga of mangas">
+  <ng-container *ngFor="let manga of mangas; trackBy: trackManga">
     <div class="manga-cover-container">
       <img class="manga-cover" [src]="manga.coverPictureUrl" alt="Manga cover" />
       <mat-progress-bar class="manga-progress" mode="determinate" value="40"> </mat-progress-bar>

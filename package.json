@@ -3,14 +3,17 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config src/proxy.conf.json",
-    "build": "ng build",
+    "start": "ng serve --configuration=en --proxy-config src/proxy.conf.json",
+    "start:fr": "ng serve --configuration=fr --proxy-config src/proxy.conf.json",
+    "build": "ng build --configuration=en",
+    "build:fr": "ng build --configuration=fr",
     "build:prod": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
-    "lint:fix": "ng lint --fix"
+    "lint:fix": "ng lint --fix",
+    "extract-i18n": "ng extract-i18n"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +46,7 @@
     "@angular-eslint/template-parser": "17.1.1",
     "@angular/cli": "~17.0.7",
     "@angular/compiler-cli": "^17.0.7",
+    "@angular/localize": "^17.0.7",
     "@types/jasmine": "~5.1.4",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
@@ -53,6 +57,7 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-extract-i18n-merge": "^2.9.1",
     "prettier": "3.2.1",
     "puppeteer": "^21.6.1",
     "typescript": "5.2.2"

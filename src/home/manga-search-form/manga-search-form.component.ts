@@ -33,7 +33,6 @@ export class MangaSearchFormComponent implements OnInit {
         })
       )
       .subscribe((searchResult) => {
-        console.log(searchResult);
         this.searchResultMangas = searchResult;
       });
   }

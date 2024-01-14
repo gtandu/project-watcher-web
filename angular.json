@@ -5,6 +5,19 @@
   "projects": {
     "project-watcher-web": {
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "en": {
+            "translation": "src/locale/messages.xlf",
+            "baseHref": ""
+          },
+          "fr": {
+            "translation": "src/locale/messages.fr.xlf",
+            "baseHref": ""
+          }
+        }
+      },
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
@@ -13,6 +26,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
+            "i18nMissingTranslation": "error",
             "outputPath": "dist/project-watcher-web",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -57,6 +72,14 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "en": {
+              "localize": ["en"],
+              "i18nMissingTranslation": "error"
+            },
+            "fr": {
+              "localize": ["fr"],
+              "i18nMissingTranslation": "error"
             }
           },
           "defaultConfiguration": "production"
@@ -73,14 +96,25 @@
             },
             "development": {
               "buildTarget": "project-watcher-web:build:development"
+            },
+            "en": {
+              "buildTarget": "project-watcher-web:build:development,en"
+            },
+            "fr": {
+              "buildTarget": "project-watcher-web:build:development,fr"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ng-extract-i18n-merge:ng-extract-i18n-merge",
           "options": {
-            "buildTarget": "project-watcher-web:build"
+            "browserTarget": "project-watcher-web:build",
+            "format": "xlf",
+            "outputPath": "src/locale",
+            "targetFiles": [
+              "messages.fr.xlf"
+            ]
           }
         },
         "test": {

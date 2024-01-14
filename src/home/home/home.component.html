@@ -2,43 +2,25 @@
   <mat-sidenav #sidenav class="home-sidenav" [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" position="end" fixedTopGap="0" fixedBottomGap="0">
     <div class="sidenav-header">
       <div class="sidenav-header-back-button">
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="sidenav.close()">
+        <button mat-icon-button (click)="sidenav.close()">
           <mat-icon>arrow_back</mat-icon>
         </button>
       </div>
       <div class="sidenav-header-title">
-        <p>Ajouter un manga</p>
+        <p i18n="Sidenav header|Sidenav header's label">Add a manga</p>
       </div>
     </div>
-    <app-manga-search-form (selectedManga)="onSelectedManga($event)"></app-manga-search-form>
-    <div class="cover-rating" *ngIf="selectedManga">
-      <div class="founded-manga-cover-and-rating-container">
-        <div class="founded-manga-cover-container">
-          <div>
-            <img class="founded-manga-cover" [src]="selectedManga?.coverPictureUrl" alt="Manga cover" />
-          </div>
-          <div>
-            <button mat-button color="primary">Upload</button>
-          </div>
-        </div>
-        <div class="founded-manga-rating-container">
-          <div>
-            <span>Note</span>
-          </div>
-          <div>
-            <star-rating class="test" [starType]="'svg'" staticColor="ok" [hoverEnabled]="true" space="between"></star-rating>
-          </div>
-        </div>
-      </div>
-    </div>
-    <app-manga-form-fields *ngIf="selectedManga"></app-manga-form-fields>
+    <ng-container *ngIf="sidenav.opened">
+      <app-manga-search-form (selectedManga)="onSelectedManga($event)"></app-manga-search-form>
+      <app-manga-form-fields [selectedManga]="selectedManga" (filledManga)="saveManga($event)"></app-manga-form-fields>
+    </ng-container>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <div class="header">
       <button mat-raised-button color="primary" class="button-add-manga" (click)="sidenav.open()">
         <mat-icon>add</mat-icon>
-        Ajouter un manga
+        <span i18n="Home header|Home header's label">Add a manga</span>
       </button>
     </div>
     <app-manga-list></app-manga-list>

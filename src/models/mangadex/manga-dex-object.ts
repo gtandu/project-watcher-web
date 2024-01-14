@@ -19,13 +19,20 @@ export interface MangaDexObjectAttributesLanguageData {
   fr: string;
 }
 
+export enum MangaDexStatus {
+  ONGOING = 'ongoing',
+  COMPLETED = 'completed',
+  HIATUS = 'hiatus',
+  CANCELLED = 'cancelled'
+}
+
 export interface MangaDexObjectAttributes {
   title: MangaDexObjectAttributesLanguageData;
   description: MangaDexObjectAttributesLanguageData;
   lastVolume: string;
   lastChapter: string;
   publicationDemographic: string;
-  status: string;
+  status: MangaDexStatus;
   year: number;
 }
 
