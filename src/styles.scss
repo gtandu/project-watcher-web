@@ -1,15 +1,46 @@
+@use '@angular/material' as mat;
+@include mat.core();
 /* You can add global styles to this file, and also import other style files */
 @import 'node_modules/css-star-rating/css/star-rating.css';
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('assets/fonts/poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-typography: mat.define-typography-config(
+  // Specify "Poppins" as the default font family for all levels.
+        $font-family: 'Poppins');
+
+$my-theme: mat.define-light-theme((
+        color: (
+                primary: $my-primary,
+                accent: $my-accent,
+        ),
+        typography: $my-typography,
+));
+
+@include mat.typography-hierarchy($my-typography);
+@include mat.all-component-themes($my-theme);
 
 html, body {
   height: 100%;
 }
 
-star-rating .star-filled, star-rating .star-empty, star-rating .star-half {
+star-rating-control .rating.medium .star {
   width: 1.5rem;
   height: 1.5rem;
 }
-star-rating .star-container {
+
+star-rating-control .star-filled, star-rating .star-empty, star-rating .star-half {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+star-rating-control .star-container {
   margin-left: 0;
   margin-right: 0;
   .star {

@@ -1,19 +1,18 @@
 <ng-container *ngIf="selectedManga">
   <form [formGroup]="mangaForm" (ngSubmit)="onSubmit()">
-    <div class="cover-rating">
-      <div class="founded-manga-cover-and-rating-container">
-        <div class="founded-manga-cover-container">
-          <div>
-            <img class="founded-manga-cover" [src]="selectedManga?.coverPictureUrl" alt="Manga cover" />
-          </div>
+    <div class="founded-manga-cover-and-rating-container">
+      <div class="founded-manga-cover-container">
+        <div>
+          <img class="founded-manga-cover" [src]="selectedManga.coverPictureUrl" alt="Manga cover" />
         </div>
-        <div class="founded-manga-rating-container">
-          <div>
-            <span i18n="Manga's rate label">Rate</span>
-          </div>
-          <div>
-            <star-rating-control [starType]="'svg'" staticColor="ok" [hoverEnabled]="true" space="between" formControlName="rate"></star-rating-control>
-          </div>
+      </div>
+      <div class="founded-manga-rating-container">
+        <div>
+          <span i18n="Manga's rate label">Rate</span>
+        </div>
+        <div>
+          <star-rating-control [starType]="'svg'" staticColor="ok" [hoverEnabled]="true" space="between"
+                               formControlName="rate"></star-rating-control>
         </div>
       </div>
     </div>
@@ -26,7 +25,7 @@
       <mat-form-field>
         <mat-label i18n="Manga form's field state mat-label">Manga's state</mat-label>
         <mat-select formControlName="state">
-          <mat-option *ngFor="let status of status" [value]="status">{{ status }}</mat-option>
+          <mat-option *ngFor="let status of mangaDexStatus | keyvalue: originalOrder" [value]="status.value">{{ status.value | mangaDexStatusMessage }}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>

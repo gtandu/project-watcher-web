@@ -26,6 +26,21 @@ export enum MangaDexStatus {
   CANCELLED = 'cancelled'
 }
 
+export function getMangaDexStatusMessage(state: MangaDexStatus): string {
+  switch(state) {
+    case MangaDexStatus.ONGOING:
+      return $localize`ongoing`;
+    case MangaDexStatus.COMPLETED:
+      return $localize`completed`;
+    case MangaDexStatus.HIATUS:
+      return $localize`hiatus`;
+    case MangaDexStatus.CANCELLED:
+      return $localize`cancelled`;
+    default:
+      return $localize`unknown`;
+  }
+}
+
 export interface MangaDexObjectAttributes {
   title: MangaDexObjectAttributesLanguageData;
   description: MangaDexObjectAttributesLanguageData;

@@ -1,13 +1,13 @@
-<mat-sidenav-container [hasBackdrop]="false">
-  <mat-sidenav #sidenav class="home-sidenav" [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" position="end" fixedTopGap="0" fixedBottomGap="0">
+<mat-sidenav-container [hasBackdrop]="false" autosize>
+  <mat-sidenav #sidenav class="home-sidenav" [mode]="isMobile ? 'over' : 'side'" [fixedInViewport]="isMobile" position="end" fixedTopGap="0" fixedBottomGap="0" [ngClass]="{'is-mobile': isMobile}">
     <div class="sidenav-header">
       <div class="sidenav-header-back-button">
         <button mat-icon-button (click)="sidenav.close()">
           <mat-icon>arrow_back</mat-icon>
         </button>
       </div>
-      <div class="sidenav-header-title">
-        <p i18n="Sidenav header|Sidenav header's label">Add a manga</p>
+      <div class="sidenav-header-title-container">
+        <span class="sidenav-header-title" i18n="Sidenav header|Sidenav header's label">Add a manga</span>
       </div>
     </div>
     <ng-container *ngIf="sidenav.opened">

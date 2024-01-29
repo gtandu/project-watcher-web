@@ -38,9 +38,25 @@
         <source>Search manga</source>
         <target>Rechercher un manga</target>
       </trans-unit>
-      <trans-unit id="2497863878315153442" datatype="html">
-        <source>TTTTT</source>
-        <target state="new">TTTTT</target>
+      <trans-unit id="8223746646501611936" datatype="html">
+        <source>ongoing</source>
+        <target state="new">En cours</target>
+      </trans-unit>
+      <trans-unit id="7510279840486540181" datatype="html">
+        <source>completed</source>
+        <target state="new">Terminé</target>
+      </trans-unit>
+      <trans-unit id="8645667129165065709" datatype="html">
+        <source>hiatus</source>
+        <target state="new">En pause</target>
+      </trans-unit>
+      <trans-unit id="3790237263254602448" datatype="html">
+        <source>cancelled</source>
+        <target state="new">Annulé</target>
+      </trans-unit>
+      <trans-unit id="4097761430561209267" datatype="html">
+        <source>unknown</source>
+        <target state="new">Inconnu</target>
       </trans-unit>
     </body>
   </file>

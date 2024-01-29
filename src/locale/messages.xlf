@@ -2,9 +2,6 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="2497863878315153442" datatype="html">
-        <source>TTTTT</source>
-      </trans-unit>
       <trans-unit id="8496520824120302513" datatype="html">
         <source>Add a manga</source>
       </trans-unit>
@@ -31,6 +28,21 @@
       </trans-unit>
       <trans-unit id="8678355956604725072" datatype="html">
         <source>Search manga</source>
+      </trans-unit>
+      <trans-unit id="3790237263254602448" datatype="html">
+        <source>cancelled</source>
+      </trans-unit>
+      <trans-unit id="7510279840486540181" datatype="html">
+        <source>completed</source>
+      </trans-unit>
+      <trans-unit id="8223746646501611936" datatype="html">
+        <source>ongoing</source>
+      </trans-unit>
+      <trans-unit id="8645667129165065709" datatype="html">
+        <source>hiatus</source>
+      </trans-unit>
+      <trans-unit id="4097761430561209267" datatype="html">
+        <source>unknown</source>
       </trans-unit>
     </body>
   </file>

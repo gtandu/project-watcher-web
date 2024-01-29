@@ -4,23 +4,30 @@ import { MangaListComponent } from './manga-list.component';
 import { MangasService } from '../../services/mangas.service';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { Manga } from '../../models/manga';
-import { bleachManga, bleachOneShotManga } from '../../utils/tests/mock-data';
+import { bleachDigitalComicsManga, bleachManga, bleachOneShotManga } from '../../utils/tests/mock-data';
 
 describe('MangaListComponent', () => {
   let component: MangaListComponent;
   let fixture: ComponentFixture<MangaListComponent>;
-  let mangaServiceSpy: Spy<MangasService>;
+  let mangasServiceSpy: Spy<MangasService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MangaListComponent],
-      providers: [{ provide: MangasService, useValue: createSpyFromClass(MangasService) }]
+      providers: [
+        {
+          provide: MangasService,
+          useValue: createSpyFromClass(MangasService, {
+            observablePropsToSpyOn: ['mangaRefreshSubject']
+          })
+        }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MangaListComponent);
     component = fixture.componentInstance;
 
-    mangaServiceSpy = TestBed.inject<any>(MangasService);
+    mangasServiceSpy = TestBed.inject<any>(MangasService);
   });
 
   it('should create', () => {
@@ -31,13 +38,27 @@ describe('MangaListComponent', () => {
     it('should load mangas list', () => {
       // GIVEN
       const expectedMangas: Manga[] = [{ ...bleachManga }, { ...bleachOneShotManga }];
-      mangaServiceSpy.getAll.and.nextWith(expectedMangas);
+      mangasServiceSpy.getAll.and.nextWith(expectedMangas);
 
       // WHEN
       component.ngOnInit();
 
       // THEN
-      expect(mangaServiceSpy.getAll).toHaveBeenCalled();
+      expect(mangasServiceSpy.getAll).toHaveBeenCalled();
+      expect(component.mangas).toBe(expectedMangas);
+    });
+
+    it('should load mangas list when refresh is trigger', () => {
+      // GIVEN
+      const expectedMangas: Manga[] = [{ ...bleachManga }, { ...bleachOneShotManga }, { ...bleachDigitalComicsManga }];
+      mangasServiceSpy.getAll.and.nextWith(expectedMangas);
+      mangasServiceSpy.mangaRefreshSubject.nextWith();
+
+      // WHEN
+      component.ngOnInit();
+
+      // THEN
+      expect(mangasServiceSpy.getAll).toHaveBeenCalledTimes(2);
       expect(component.mangas).toBe(expectedMangas);
     });
   });

@@ -36,3 +36,16 @@ export const bleachDigitalComicsManga: Manga = {
   state: 'completed',
   readingSource: ''
 };
+
+export const bleachMangaSaved: Manga = {
+  id: '121564896',
+  name: 'Bleach',
+  description:
+    "Ichigo Kurosaki has always been able to see ghosts, but this ability doesn't change his life nearly as much as his close encounter with Rukia Kuchiki, a Soul Reaper and member of the mysterious Soul Society. While fighting a Hollow, an evil spirit that preys on humans who display psychic energy, Rukia attempts to lend Ichigo some of her powers so that he can save his family, but much to her surprise, Ichigo absorbs every last drop of her energy.   \nNow a full-fledged Soul Reaper himself, Ichigo quickly learns that the world he inhabits is one full of dangerous spirits, and along with Rukia, who is slowly regaining her powers, it's Ichigo's job to both protect the innocent from Hollows and to help the spirits themselves find peace.   \n\n---\n  \n- **Won the 50th Shogakukan Manga Award for Shonen**  \n \n--- \n- [ANN link for the various anime, movies, OAVs, etc.](https://www.animenewsnetwork.com/encyclopedia/manga.php?id=2468)\n- [Alternate Official English](https://mangaplus.shueisha.co.jp/titles/100004)",
+  releasedDate: 2001,
+  coverPictureUrl: 'https://uploads.mangadex.org/covers/239d6260-d71f-43b0-afff-074e3619e3de/b30cfa48-f5e7-4217-8e40-fc9b87a62484.png',
+  rate: 0,
+  review: '',
+  state: 'completed',
+  readingSource: ''
+};

@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Manga } from '../../models/manga';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MangasService } from '../../services/mangas.service';
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -9,21 +9,21 @@ import { MatSidenav } from '@angular/material/sidenav';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnDestroy {
-  public mobileQuery: MediaQueryList;
-  private readonly _mobileQueryListener: () => void;
+export class HomeComponent implements OnInit {
   public selectedManga: Manga | undefined;
+  public isMobile = false;
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
 
   constructor(
     private readonly mangasService: MangasService,
-    private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly media: MediaMatcher
-  ) {
-    this.mobileQuery = media.matchMedia('(max-width: 39.9375rem)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+    private readonly responsive: BreakpointObserver
+  ) {}
+
+  ngOnInit(): void {
+    this.responsive.observe([Breakpoints.TabletPortrait, Breakpoints.TabletLandscape, Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape]).subscribe((result) => {
+      this.isMobile = result.matches;
+    });
   }
 
   public onSelectedManga(selectedManga: Manga) {
@@ -36,8 +36,5 @@ export class HomeComponent implements OnDestroy {
       this.sidenav?.close();
       this.selectedManga = undefined;
     });
-  }
-  ngOnDestroy(): void {
-    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
 }

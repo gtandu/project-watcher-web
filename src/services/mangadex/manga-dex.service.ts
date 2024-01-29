@@ -16,8 +16,8 @@ export class MangaDexService implements MangaDexInterface {
 
   public login(): Observable<MangaDexAuthResponse> {
     const creds = {
-      username: 'dylams',
-      password: '@!QLbeAz55TH'
+      username: '',
+      password: ''
     };
     return this.http.post<MangaDexAuthResponse>(`${this.BASE_URL}/auth/login`, creds);
   }
