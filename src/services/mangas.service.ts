@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class MangasService {
-  private readonly BACKEND_ENDPOINT = `${environment.BACKEND_ENDPOINT_API_V1}/mangas}`;
+  private readonly BACKEND_ENDPOINT = `${environment.BACKEND_ENDPOINT_API_V1}/mangas`;
   public mangaRefreshSubject = new Subject<void>();
   constructor(private readonly http: HttpClient) {}
 
