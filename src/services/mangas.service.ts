@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Manga } from '../models/manga';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MangasService {
-  private readonly BACKEND_ENDPOINT = 'http://localhost:7001/mangas';
+  private readonly BACKEND_ENDPOINT = `${environment.BACKEND_ENDPOINT_API_V1}/mangas}`;
   public mangaRefreshSubject = new Subject<void>();
   constructor(private readonly http: HttpClient) {}
 

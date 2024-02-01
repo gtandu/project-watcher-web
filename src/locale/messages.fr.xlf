@@ -58,6 +58,10 @@
         <source>unknown</source>
         <target state="new">Inconnu</target>
       </trans-unit>
+      <trans-unit id="3246344691497226384" datatype="html">
+        <source>Logout</source>
+        <target state="new">Déconnexion</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

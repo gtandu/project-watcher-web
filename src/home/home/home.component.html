@@ -20,7 +20,11 @@
     <div class="header">
       <button mat-raised-button color="primary" class="button-add-manga" (click)="sidenav.open()">
         <mat-icon>add</mat-icon>
-        <span i18n="Home header|Home header's label">Add a manga</span>
+        <span i18n="Home header|Home header's button label">Add a manga</span>
+      </button>
+      <button mat-raised-button color="primary" class="button-add-manga" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span i18n="Home header|Home header's label">Logout</span>
       </button>
     </div>
     <app-manga-list></app-manga-list>

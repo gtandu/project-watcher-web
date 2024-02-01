@@ -3,6 +3,7 @@ import { Manga } from '../../models/manga';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MangasService } from '../../services/mangas.service';
 import { MatSidenav } from '@angular/material/sidenav';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private readonly mangasService: MangasService,
-    private readonly responsive: BreakpointObserver
+    private readonly responsive: BreakpointObserver,
+    private readonly keycloakService: KeycloakService
   ) {}
 
   ngOnInit(): void {
@@ -36,5 +38,9 @@ export class HomeComponent implements OnInit {
       this.sidenav?.close();
       this.selectedManga = undefined;
     });
+  }
+
+  public logout() {
+    this.keycloakService.logout();
   }
 }

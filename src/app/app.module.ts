@@ -1,16 +1,27 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomeModule } from '../home/home.module';
 import { SearchMangaModule } from '../search-manga/search-manga.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializer } from '../utils/app-init';
+import { RouterOutlet } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, SearchMangaModule, HomeModule],
-  providers: [],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, KeycloakAngularModule, HttpClientModule, SearchMangaModule, HomeModule, RouterOutlet],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializer,
+      deps: [KeycloakService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

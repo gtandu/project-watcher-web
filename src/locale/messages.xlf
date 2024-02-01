@@ -44,6 +44,9 @@
       <trans-unit id="4097761430561209267" datatype="html">
         <source>unknown</source>
       </trans-unit>
+      <trans-unit id="3246344691497226384" datatype="html">
+        <source>Logout</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
