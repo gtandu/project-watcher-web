@@ -5,9 +5,9 @@ name: Project Watcher Tests Check
 
 on:
   push:
-    branches: [ "master","main" ]
+    branches: [ "dev","main" ]
   pull_request:
-    branches: [ "master","main" ]
+    branches: [ "dev","main" ]
 
 jobs:
   build:
