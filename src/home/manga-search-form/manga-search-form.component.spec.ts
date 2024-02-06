@@ -6,6 +6,8 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { EventEmitter } from '@angular/core';
 import { Manga } from '../../models/manga';
 import { bleachDigitalComicsManga, bleachManga, bleachOneShotManga } from '../../utils/tests/mock-data';
+import { KeycloakService } from 'keycloak-angular';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MangaSearchFormComponent', () => {
   let component: MangaSearchFormComponent;
@@ -14,8 +16,9 @@ describe('MangaSearchFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MangaSearchFormComponent],
-      providers: [{ provide: MangaDexManagerService, useValue: createSpyFromClass(MangaDexManagerService) }]
+      imports: [HttpClientTestingModule, MangaSearchFormComponent],
+      providers: [KeycloakService,
+        { provide: MangaDexManagerService, useValue: createSpyFromClass(MangaDexManagerService) }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MangaSearchFormComponent);

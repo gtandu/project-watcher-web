@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MangaDexInterceptor } from './manga-dex.interceptor';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { KeycloakService } from 'keycloak-angular';
 
 describe('MangaDexInterceptor', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      providers: [MangaDexInterceptor]
+      imports: [HttpClientTestingModule],
+      providers: [MangaDexInterceptor, KeycloakService]
     })
   );
 

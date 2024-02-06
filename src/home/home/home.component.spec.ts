@@ -9,6 +9,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { bleachManga, bleachMangaSaved } from '../../utils/tests/mock-data';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { KeycloakService } from 'keycloak-angular';
 
 class MockBreakpointObserver {
   private state: BehaviorSubject<BreakpointState> = new BehaviorSubject({} as BreakpointState);
@@ -45,6 +46,7 @@ describe('HomeComponent', () => {
       imports: [BrowserAnimationsModule],
       providers: [
         { provide: BreakpointObserver, useClass: MockBreakpointObserver },
+        { provide: KeycloakService },
         {
           provide: MangasService,
           useValue: createSpyFromClass(MangasService, {
