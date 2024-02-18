@@ -1,6 +1,6 @@
-import { BaseDocument } from './base-document';
+import { Base } from './base';
 
-export class MediaDocument extends BaseDocument {
+export class Media extends Base {
   name: string;
   description: string;
   releasedDate: number;
@@ -8,8 +8,9 @@ export class MediaDocument extends BaseDocument {
   rate: number;
   review: string;
   state: string;
+  type: string;
 
-  constructor(id: string, name: string, description: string, releasedDate: number, coverPictureUrl: string, rate: number, review: string, state: string) {
+  constructor(id: string, name: string, description: string, releasedDate: number, coverPictureUrl: string, rate: number, review: string, state: string, type: string) {
     super(id);
     this.name = name;
     this.description = description;
@@ -18,5 +19,6 @@ export class MediaDocument extends BaseDocument {
     this.rate = rate;
     this.review = review;
     this.state = state;
+    this.type = type;
   }
 }

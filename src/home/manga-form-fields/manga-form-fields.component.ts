@@ -32,7 +32,8 @@ export class MangaFormFieldsComponent implements OnChanges {
     readingSource: [''],
     rate: [0],
     coverPictureUrl: [''],
-    releasedDate: ['']
+    releasedDate: [''],
+    type: ['']
   });
 
   public mangaDexStatus = MangaDexStatus;
@@ -53,8 +54,12 @@ export class MangaFormFieldsComponent implements OnChanges {
     this.getCoverPictureUrlFormControl().patchValue(selectedManga?.coverPictureUrl ? selectedManga.coverPictureUrl : '');
     this.getReadingSourceFormControl().patchValue(selectedManga?.readingSource ? selectedManga.readingSource : '');
     this.getReleasedDateFormControl().patchValue(selectedManga?.releasedDate ? selectedManga.releasedDate : '');
+    this.getTypeFormControl().patchValue(selectedManga?.type ? selectedManga.type : '');
   }
 
+  private getTypeFormControl(): FormControl {
+    return this.mangaForm.controls['type'] as FormControl;
+  }
   private getReleasedDateFormControl(): FormControl {
     return this.mangaForm.controls['releasedDate'] as FormControl;
   }

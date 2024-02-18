@@ -35,6 +35,7 @@ export class MangaDexManagerService implements MangaDexInterface {
             0,
             '',
             mangaResponse.attributes.status,
+            mangaResponse.type,
             ''
           );
         });
