@@ -27,7 +27,7 @@ export class MangaDexManagerService implements MangaDexInterface {
         return mangaDexResponse.data.map((mangaResponse) => {
           const mangaDexObjectRelationshipsData = mangaResponse.relationships.find((value) => value.type === 'cover_art');
           return new Manga(
-            '',
+            undefined,
             mangaResponse.attributes.title.en,
             mangaResponse.attributes.description.en,
             mangaResponse.attributes.year,

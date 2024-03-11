@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Manga } from '../models/manga';
 import { environment } from '../environments/environment';
+import { ReadingMedia } from '../models/reading-media';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class MangasService {
     return this.http.get<Manga[]>(this.BACKEND_ENDPOINT);
   }
 
-  public createManga(manga: Manga): Observable<Manga> {
-    return this.http.post<Manga>(this.BACKEND_ENDPOINT, manga);
+  public addMediaToReadingList(readingMedia: ReadingMedia): Observable<ReadingMedia> {
+    return this.http.post<ReadingMedia>(this.BACKEND_ENDPOINT, readingMedia);
   }
 
   public updateManga(mangaId: string, manga: Manga): Observable<Manga> {

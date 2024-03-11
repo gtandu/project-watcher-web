@@ -4,6 +4,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MangasService } from '../../services/mangas.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { KeycloakService } from 'keycloak-angular';
+import { ReadingFormat, ReadingMedia } from '../../models/reading-media';
+import { ReadingMediasService } from '../../services/reading-medias.service';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +20,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private readonly mangasService: MangasService,
+    private readonly readingMedias: ReadingMediasService,
     private readonly responsive: BreakpointObserver,
     private readonly keycloakService: KeycloakService
   ) {}
@@ -33,7 +36,8 @@ export class HomeComponent implements OnInit {
   }
 
   public saveManga(filledManga: Manga) {
-    this.mangasService.createManga(filledManga).subscribe(() => {
+    const readingMedia: ReadingMedia = { id: filledManga.id, media: filledManga, readingFormat: ReadingFormat.VOLUME, readingFormatStatusList: [] };
+    this.readingMedias.addMediaToReadingList(readingMedia).subscribe(() => {
       this.mangasService.mangaRefreshSubject.next();
       this.sidenav?.close();
       this.selectedManga = undefined;
