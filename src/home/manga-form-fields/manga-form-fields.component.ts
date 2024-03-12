@@ -10,7 +10,6 @@ import { StarRatingModule } from 'angular-star-rating';
 import { Manga } from '../../models/manga';
 import { MangaDexStatus } from '../../models/mangadex/manga-dex-object';
 import { MangaDexStatusMessagePipe } from '../../pipes/mangadex/manga-dex-status-message.pipe';
-import { MediaType } from '../../models/media-document';
 
 @Component({
   selector: 'app-manga-form-fields',
@@ -33,8 +32,7 @@ export class MangaFormFieldsComponent implements OnChanges {
     readingSource: [''],
     rate: [0],
     coverPictureUrl: [''],
-    releasedDate: [''],
-    type: MediaType.MANGA
+    releasedDate: ['']
   });
 
   public mangaDexStatus = MangaDexStatus;

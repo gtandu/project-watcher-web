@@ -3,7 +3,8 @@
 // private List<ReadingFormatStatusDto> readingFormatStatusList;
 
 import { BaseObject } from './base-object';
-import { MediaDocument } from './media-document';
+import { Manga } from './manga';
+
 export enum ReadingFormat {
   CHAPTER = 'chapter',
   VOLUME = 'volume'
@@ -19,13 +20,15 @@ export class ReadingFormatStatus extends BaseObject{
     this.read = read;
   }
 }
-export class ReadingMedia extends BaseObject {
-  media: MediaDocument;
+
+export class ReadingManga extends BaseObject {
+  manga: Manga;
   readingFormat: ReadingFormat;
   readingFormatStatusList: ReadingFormatStatus[];
-  constructor(id: number, media: MediaDocument, readingFormat: ReadingFormat, readingFormatStatusList: ReadingFormatStatus[]) {
+
+  constructor(id: number, manga: Manga, readingFormat: ReadingFormat, readingFormatStatusList: ReadingFormatStatus[]) {
     super(id);
-    this.media = media;
+    this.manga = manga;
     this.readingFormat = readingFormat;
     this.readingFormatStatusList = readingFormatStatusList;
   }

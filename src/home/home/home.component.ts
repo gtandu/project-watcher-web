@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Manga } from '../../models/manga';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MangasService } from '../../services/mangas.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { KeycloakService } from 'keycloak-angular';
-import { ReadingFormat, ReadingMedia } from '../../models/reading-media';
-import { ReadingMediasService } from '../../services/reading-medias.service';
+import { ReadingFormat, ReadingManga } from '../../models/reading-manga';
+import { ReadingMangasService } from '../../services/reading-mangas.service';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +18,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
 
   constructor(
-    private readonly mangasService: MangasService,
-    private readonly readingMedias: ReadingMediasService,
+    private readonly readingMangasService: ReadingMangasService,
     private readonly responsive: BreakpointObserver,
     private readonly keycloakService: KeycloakService
   ) {}
@@ -36,9 +34,14 @@ export class HomeComponent implements OnInit {
   }
 
   public saveManga(filledManga: Manga) {
-    const readingMedia: ReadingMedia = { id: filledManga.id, media: filledManga, readingFormat: ReadingFormat.VOLUME, readingFormatStatusList: [] };
-    this.readingMedias.addMediaToReadingList(readingMedia).subscribe(() => {
-      this.mangasService.mangaRefreshSubject.next();
+    const readingManga: ReadingManga = {
+      id: filledManga.id,
+      manga: filledManga,
+      readingFormat: ReadingFormat.VOLUME,
+      readingFormatStatusList: []
+    };
+    this.readingMangasService.addMediaToReadingList(readingManga).subscribe(() => {
+      this.readingMangasService.readingMangasRefreshSubject.next();
       this.sidenav?.close();
       this.selectedManga = undefined;
     });

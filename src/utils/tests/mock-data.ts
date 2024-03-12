@@ -1,7 +1,8 @@
 import { Manga } from '../../models/manga';
+import { ReadingFormat, ReadingManga } from '../../models/reading-manga';
 
 export const bleachManga: Manga = {
-  id: '',
+  id: undefined,
   name: 'Bleach',
   description:
     "Ichigo Kurosaki has always been able to see ghosts, but this ability doesn't change his life nearly as much as his close encounter with Rukia Kuchiki, a Soul Reaper and member of the mysterious Soul Society. While fighting a Hollow, an evil spirit that preys on humans who display psychic energy, Rukia attempts to lend Ichigo some of her powers so that he can save his family, but much to her surprise, Ichigo absorbs every last drop of her energy.   \nNow a full-fledged Soul Reaper himself, Ichigo quickly learns that the world he inhabits is one full of dangerous spirits, and along with Rukia, who is slowly regaining her powers, it's Ichigo's job to both protect the innocent from Hollows and to help the spirits themselves find peace.   \n\n---\n  \n- **Won the 50th Shogakukan Manga Award for Shonen**  \n \n--- \n- [ANN link for the various anime, movies, OAVs, etc.](https://www.animenewsnetwork.com/encyclopedia/manga.php?id=2468)\n- [Alternate Official English](https://mangaplus.shueisha.co.jp/titles/100004)",
@@ -14,7 +15,7 @@ export const bleachManga: Manga = {
 };
 
 export const bleachOneShotManga: Manga = {
-  id: '',
+  id: undefined,
   name: 'Bleach: Special One-Shot - Digital Colored Comics',
   description: 'Special one-shot to celebrate the 20th anniversary of the series.\n\n[Color Version Announcement](https://twitter.com/jump_henshubu/status/1695994618167410773)',
   releasedDate: 2023,
@@ -25,7 +26,7 @@ export const bleachOneShotManga: Manga = {
   readingSource: ''
 };
 export const bleachDigitalComicsManga: Manga = {
-  id: '',
+  id: undefined,
   name: 'Bleach - Digital Colored Comics',
   description:
     "Ichigo Kurosaki has always been able to see ghosts, but this ability doesn't change his life nearly as much as his close encounter with Rukia Kuchiki, a Soul Reaper and member of the mysterious Soul Society. While fighting a Hollow, an evil spirit that preys on humans who display psychic energy, Rukia attempts to lend Ichigo some of her powers so that he can save his family, but much to her surprise, Ichigo absorbs every last drop of her energy. Now a full-fledged Soul Reaper himself, Ichigo quickly learns that the world he inhabits is one full of dangerous spirits, and along with Rukia, who is slowly regaining her powers, it's Ichigo's job to both protect the innocent from Hollows and to help the spirits themselves find peace.   \n  \nMonochrome version won the 50th Shogakukan Manga Award in the Shounen category.",
@@ -38,7 +39,7 @@ export const bleachDigitalComicsManga: Manga = {
 };
 
 export const bleachMangaSaved: Manga = {
-  id: '121564896',
+  id: 121564896,
   name: 'Bleach',
   description:
     "Ichigo Kurosaki has always been able to see ghosts, but this ability doesn't change his life nearly as much as his close encounter with Rukia Kuchiki, a Soul Reaper and member of the mysterious Soul Society. While fighting a Hollow, an evil spirit that preys on humans who display psychic energy, Rukia attempts to lend Ichigo some of her powers so that he can save his family, but much to her surprise, Ichigo absorbs every last drop of her energy.   \nNow a full-fledged Soul Reaper himself, Ichigo quickly learns that the world he inhabits is one full of dangerous spirits, and along with Rukia, who is slowly regaining her powers, it's Ichigo's job to both protect the innocent from Hollows and to help the spirits themselves find peace.   \n\n---\n  \n- **Won the 50th Shogakukan Manga Award for Shonen**  \n \n--- \n- [ANN link for the various anime, movies, OAVs, etc.](https://www.animenewsnetwork.com/encyclopedia/manga.php?id=2468)\n- [Alternate Official English](https://mangaplus.shueisha.co.jp/titles/100004)",
@@ -48,4 +49,31 @@ export const bleachMangaSaved: Manga = {
   review: '',
   state: 'completed',
   readingSource: ''
+};
+
+export const bleachReadingManga: ReadingManga = {
+  id: undefined,
+  manga: { ...bleachManga },
+  readingFormat: ReadingFormat.VOLUME,
+  readingFormatStatusList: []
+};
+
+export const bleachOneShotReadingManga: ReadingManga = {
+  id: undefined,
+  manga: { ...bleachOneShotManga },
+  readingFormat: ReadingFormat.VOLUME,
+  readingFormatStatusList: []
+};
+
+export const bleachDigitalComicsReadingManga: ReadingManga = {
+  id: undefined,
+  manga: { ...bleachDigitalComicsManga },
+  readingFormat: ReadingFormat.VOLUME,
+  readingFormatStatusList: []
+};
+export const bleachReadingMangaSaved: ReadingManga = {
+  id: 125,
+  manga: { ...bleachMangaSaved },
+  readingFormat: ReadingFormat.VOLUME,
+  readingFormatStatusList: []
 };

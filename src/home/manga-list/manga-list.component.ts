@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NgForOf } from '@angular/common';
-import { MangasService } from '../../services/mangas.service';
 import { Manga } from '../../models/manga';
 import { switchMap } from 'rxjs';
+import { ReadingMangasService } from '../../services/reading-mangas.service';
 
 @Component({
   selector: 'app-manga-list',
@@ -15,15 +15,15 @@ import { switchMap } from 'rxjs';
 export class MangaListComponent implements OnInit {
   public mangas: Manga[] = [];
 
-  constructor(private readonly mangasService: MangasService) {}
+  constructor(private readonly readingMediasService: ReadingMangasService) {}
 
   ngOnInit() {
-    this.mangasService.getAll().subscribe((mangas) => {
-      this.mangas = mangas;
+    this.readingMediasService.getAllReadingMangasByUserId().subscribe((readingMangas) => {
+      this.mangas = readingMangas.map((readingManga) => readingManga.manga);
     });
 
-    this.mangasService.mangaRefreshSubject.pipe(switchMap(() => this.mangasService.getAll())).subscribe((mangas) => {
-      this.mangas = mangas;
+    this.readingMediasService.readingMangasRefreshSubject.pipe(switchMap(() => this.readingMediasService.getAllReadingMangasByUserId())).subscribe((readingMangas) => {
+      this.mangas = readingMangas.map((readingManga) => readingManga.manga);
     });
   }
 

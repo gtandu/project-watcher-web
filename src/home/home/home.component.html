@@ -1,5 +1,17 @@
-<mat-sidenav-container [hasBackdrop]="false" autosize>
-  <mat-sidenav #sidenav class="home-sidenav" [mode]="isMobile ? 'over' : 'side'" [fixedInViewport]="isMobile" position="end" fixedTopGap="0" fixedBottomGap="0" [ngClass]="{'is-mobile': isMobile}">
+<mat-toolbar class="header">
+  <button (click)="sidenav.open()" class="button-add-manga" color="primary" mat-raised-button>
+    <mat-icon>add</mat-icon>
+    <span i18n="Home header|Home header's button label">Add a manga</span>
+  </button>
+  <button (click)="logout()" class="button-add-manga" color="primary" mat-raised-button>
+    <mat-icon>logout</mat-icon>
+    <span i18n="Home header|Home header's label">Logout</span>
+  </button>
+</mat-toolbar>
+<mat-sidenav-container [hasBackdrop]="false">
+  <mat-sidenav #sidenav [fixedInViewport]="true" [mode]="isMobile ? 'over' : 'side'" [ngClass]="{'is-mobile': isMobile}"
+               class="home-sidenav"
+               fixedBottomGap="0" fixedTopGap="0" position="end">
     <div class="sidenav-header">
       <div class="sidenav-header-back-button">
         <button mat-icon-button (click)="sidenav.close()">
@@ -17,16 +29,6 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div class="header">
-      <button mat-raised-button color="primary" class="button-add-manga" (click)="sidenav.open()">
-        <mat-icon>add</mat-icon>
-        <span i18n="Home header|Home header's button label">Add a manga</span>
-      </button>
-      <button mat-raised-button color="primary" class="button-add-manga" (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span i18n="Home header|Home header's label">Logout</span>
-      </button>
-    </div>
     <app-manga-list></app-manga-list>
   </mat-sidenav-content>
 </mat-sidenav-container>

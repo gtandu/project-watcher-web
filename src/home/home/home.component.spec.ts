@@ -4,12 +4,12 @@ import { HomeComponent } from './home.component';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { BehaviorSubject, Observable, skip, Subject } from 'rxjs';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
-import { MangasService } from '../../services/mangas.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { bleachManga, bleachMangaSaved } from '../../utils/tests/mock-data';
+import { bleachManga, bleachReadingManga, bleachReadingMangaSaved } from '../../utils/tests/mock-data';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KeycloakService } from 'keycloak-angular';
+import { ReadingMangasService } from '../../services/reading-mangas.service';
 
 class MockBreakpointObserver {
   private state: BehaviorSubject<BreakpointState> = new BehaviorSubject({} as BreakpointState);
@@ -34,7 +34,7 @@ class MockBreakpointObserver {
 }
 
 let breakpointObserver: MockBreakpointObserver;
-let mangasServiceSpy: Spy<MangasService>;
+let readingMangasServiceSpy: Spy<ReadingMangasService>;
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -48,9 +48,9 @@ describe('HomeComponent', () => {
         { provide: BreakpointObserver, useClass: MockBreakpointObserver },
         { provide: KeycloakService },
         {
-          provide: MangasService,
-          useValue: createSpyFromClass(MangasService, {
-            observablePropsToSpyOn: ['mangaRefreshSubject']
+          provide: ReadingMangasService,
+          useValue: createSpyFromClass(ReadingMangasService, {
+            observablePropsToSpyOn: ['readingMangasRefreshSubject']
           })
         }
       ],
@@ -60,7 +60,7 @@ describe('HomeComponent', () => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     breakpointObserver = TestBed.inject<any>(BreakpointObserver);
-    mangasServiceSpy = TestBed.inject<any>(MangasService);
+    readingMangasServiceSpy = TestBed.inject<any>(ReadingMangasService);
     fixture.detectChanges();
   });
 
@@ -126,16 +126,16 @@ describe('HomeComponent', () => {
 
       let sidenavSpy = createSpyFromClass(MatSidenav);
       component.sidenav = sidenavSpy;
-      mangasServiceSpy.createManga.calledWith(bleachManga).nextWith(bleachMangaSaved);
-      mangasServiceSpy.mangaRefreshSubject = createSpyFromClass<any>(Subject);
+      readingMangasServiceSpy.addMediaToReadingList.calledWith(bleachReadingManga).nextWith(bleachReadingMangaSaved);
+      readingMangasServiceSpy.readingMangasRefreshSubject = createSpyFromClass<any>(Subject);
 
       // WHEN
       component.saveManga(bleachManga);
       tick();
 
       // THEN
-      expect(mangasServiceSpy.createManga).toHaveBeenCalledWith(bleachManga);
-      expect(mangasServiceSpy.mangaRefreshSubject.next).toHaveBeenCalled();
+      expect(readingMangasServiceSpy.addMediaToReadingList).toHaveBeenCalledWith(bleachReadingManga);
+      expect(readingMangasServiceSpy.readingMangasRefreshSubject.next).toHaveBeenCalled();
       expect(sidenavSpy.close).toHaveBeenCalled();
       expect(component.selectedManga).toBeUndefined();
     }));
