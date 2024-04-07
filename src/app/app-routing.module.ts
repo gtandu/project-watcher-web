@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../home/home/home.component';
 import { AccessDeniedComponent } from '../access-denied/access-denied.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { Roles } from '../models/roles';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['ROLE_USER'] }
+    data: { roles: [Roles.USER] }
   }
 ];
 

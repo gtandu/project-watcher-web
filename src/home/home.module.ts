@@ -15,6 +15,8 @@ import { MangaSearchFormComponent } from './manga-search-form/manga-search-form.
 import { MangaFormFieldsComponent } from './manga-form-fields/manga-form-fields.component';
 import { MangaListComponent } from './manga-list/manga-list.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MangaSearchResultsComponent } from './manga-search-result/manga-search-results.component';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -34,7 +36,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MangaSearchFormComponent,
     MangaFormFieldsComponent,
     MangaListComponent,
-    MatToolbarModule
+    MatToolbarModule,
+    MatMenuModule,
+    MangaSearchResultsComponent
   ]
 })
 export class HomeModule {}

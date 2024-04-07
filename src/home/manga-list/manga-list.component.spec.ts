@@ -39,8 +39,9 @@ describe('MangaListComponent', () => {
       // GIVEN
       const expectedReadingMangas: ReadingManga[] = [{ ...bleachReadingManga }, { ...bleachOneShotReadingManga }];
       const expectedMangas = expectedReadingMangas.map((readingMangas) => readingMangas.manga);
+      const pageableResultSearch = { content: expectedReadingMangas };
 
-      readingMangasServiceSpy.getAllReadingMangasByUserId.and.nextWith(expectedReadingMangas);
+      readingMangasServiceSpy.getAllReadingMangasByUserId.and.nextWith(pageableResultSearch);
 
       // WHEN
       component.ngOnInit();
@@ -54,8 +55,9 @@ describe('MangaListComponent', () => {
       // GIVEN
       const expectedReadingMangas: ReadingManga[] = [{ ...bleachReadingManga }, { ...bleachOneShotReadingManga }, { ...bleachDigitalComicsReadingManga }];
       const expectedMangas = expectedReadingMangas.map((readingMangas) => readingMangas.manga);
+      const pageableResultSearch = { content: expectedReadingMangas };
 
-      readingMangasServiceSpy.getAllReadingMangasByUserId.and.nextWith(expectedReadingMangas);
+      readingMangasServiceSpy.getAllReadingMangasByUserId.and.nextWith(pageableResultSearch);
       readingMangasServiceSpy.readingMangasRefreshSubject.nextWith();
 
       // WHEN

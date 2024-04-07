@@ -3,6 +3,7 @@ import { environment } from '../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ReadingManga } from '../models/reading-manga';
+import { PageableResultSearch } from '../models/pageable-result-search';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class ReadingMangasService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getAllReadingMangasByUserId(): Observable<ReadingManga[]> {
-    return this.http.get<ReadingManga[]>(this.BACKEND_ENDPOINT);
+  public getAllReadingMangasByUserId(): Observable<PageableResultSearch<ReadingManga>> {
+    return this.http.get<PageableResultSearch<ReadingManga>>(this.BACKEND_ENDPOINT);
   }
 
   public addMediaToReadingList(readingMedia: ReadingManga): Observable<ReadingManga> {

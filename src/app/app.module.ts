@@ -2,8 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomeModule } from '../home/home.module';
-import { SearchMangaModule } from '../search-manga/search-manga.module';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
@@ -13,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, KeycloakAngularModule, HttpClientModule, SearchMangaModule, HomeModule, RouterOutlet],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, KeycloakAngularModule, HttpClientModule, HomeModule, RouterOutlet],
   providers: [
     {
       provide: APP_INITIALIZER,

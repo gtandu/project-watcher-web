@@ -5,16 +5,28 @@ import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { KeyValuePipe, NgForOf, NgIf } from '@angular/common';
+import { KeyValuePipe, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { StarRatingModule } from 'angular-star-rating';
 import { Manga } from '../../models/manga';
-import { MangaDexStatus } from '../../models/mangadex/manga-dex-object';
-import { MangaDexStatusMessagePipe } from '../../pipes/mangadex/manga-dex-status-message.pipe';
+import { MangaDexStatus, MangaDexStatusMessagePipe } from '../../pipes/mangadex/manga-dex-status-message.pipe';
 
 @Component({
   selector: 'app-manga-form-fields',
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, ReactiveFormsModule, NgIf, StarRatingModule, NgForOf, KeyValuePipe, MangaDexStatusMessagePipe],
+  imports: [
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    NgIf,
+    StarRatingModule,
+    NgForOf,
+    KeyValuePipe,
+    MangaDexStatusMessagePipe,
+    NgOptimizedImage
+  ],
   templateUrl: './manga-form-fields.component.html',
   styleUrl: './manga-form-fields.component.scss'
 })
@@ -71,7 +83,7 @@ export class MangaFormFieldsComponent implements OnChanges {
     return this.mangaForm.controls['state'] as FormControl;
   }
 
-  private getDescriptionFormControl(): FormControl {
+  public getDescriptionFormControl(): FormControl {
     return this.mangaForm.controls['description'] as FormControl;
   }
 

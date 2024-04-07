@@ -19,11 +19,11 @@ export class MangaListComponent implements OnInit {
 
   ngOnInit() {
     this.readingMediasService.getAllReadingMangasByUserId().subscribe((readingMangas) => {
-      this.mangas = readingMangas.map((readingManga) => readingManga.manga);
+      this.mangas = readingMangas.content.map((readingManga) => readingManga.manga);
     });
 
     this.readingMediasService.readingMangasRefreshSubject.pipe(switchMap(() => this.readingMediasService.getAllReadingMangasByUserId())).subscribe((readingMangas) => {
-      this.mangas = readingMangas.map((readingManga) => readingManga.manga);
+      this.mangas = readingMangas.content.map((readingManga) => readingManga.manga);
     });
   }
 

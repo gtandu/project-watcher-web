@@ -5,6 +5,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { KeycloakService } from 'keycloak-angular';
 import { ReadingFormat, ReadingManga } from '../../models/reading-manga';
 import { ReadingMangasService } from '../../services/reading-mangas.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { ReadingMangasService } from '../../services/reading-mangas.service';
 })
 export class HomeComponent implements OnInit {
   public selectedManga: Manga | undefined;
+  public searchResultMangas: Manga[] = [];
   public isMobile = false;
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
@@ -20,7 +22,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private readonly readingMangasService: ReadingMangasService,
     private readonly responsive: BreakpointObserver,
-    private readonly keycloakService: KeycloakService
+    private readonly keycloakService: KeycloakService,
+    private readonly matSnackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +36,10 @@ export class HomeComponent implements OnInit {
     this.selectedManga = selectedManga;
   }
 
+  public onSearchResultMangas(searchResultMangas: Manga[]) {
+    this.searchResultMangas = searchResultMangas;
+  }
+
   public saveManga(filledManga: Manga) {
     const readingManga: ReadingManga = {
       id: filledManga.id,
@@ -42,11 +49,16 @@ export class HomeComponent implements OnInit {
     };
     this.readingMangasService.addMediaToReadingList(readingManga).subscribe(() => {
       this.readingMangasService.readingMangasRefreshSubject.next();
-      this.sidenav?.close();
-      this.selectedManga = undefined;
+      this.onClosedSidenav();
+      this.matSnackBar.open('Manga added', 'Close', { duration: 2000 });
     });
   }
 
+  public onClosedSidenav() {
+    this.sidenav?.close();
+    this.selectedManga = undefined;
+    this.searchResultMangas = [];
+  }
   public logout() {
     this.keycloakService.logout();
   }

@@ -62,6 +62,10 @@
         <source>Logout</source>
         <target state="new">Déconnexion</target>
       </trans-unit>
+      <trans-unit id="4902817035128594900" datatype="html">
+        <source>Description</source>
+        <target state="new">Description</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

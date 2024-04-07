@@ -3,14 +3,7 @@
     <mat-label i18n="Search field's mat-label">Search manga</mat-label>
     <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="searchFormControl" />
     <mat-icon matPrefix>search</mat-icon>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="updateSelectedManga($event)"
-                      [displayWith]="displayMangaName">
-      <ng-container *ngFor="let foundedManga of searchResultMangas">
-        <mat-option [value]="foundedManga">
-          <img alt="" class="example-option-img" [src]="foundedManga.coverPictureUrl" height="100" />
-          <span>{{ foundedManga.name }}</span>
-        </mat-option>
-      </ng-container>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayMangaName">
     </mat-autocomplete>
   </mat-form-field>
 </div>

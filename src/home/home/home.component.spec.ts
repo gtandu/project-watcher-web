@@ -10,6 +10,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KeycloakService } from 'keycloak-angular';
 import { ReadingMangasService } from '../../services/reading-mangas.service';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 class MockBreakpointObserver {
   private state: BehaviorSubject<BreakpointState> = new BehaviorSubject({} as BreakpointState);
@@ -35,6 +37,7 @@ class MockBreakpointObserver {
 
 let breakpointObserver: MockBreakpointObserver;
 let readingMangasServiceSpy: Spy<ReadingMangasService>;
+let matSnackbar: Spy<MatSnackBar>;
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -43,7 +46,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent, MatSidenav],
-      imports: [BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule, MatMenuModule],
       providers: [
         { provide: BreakpointObserver, useClass: MockBreakpointObserver },
         { provide: KeycloakService },
@@ -52,7 +55,8 @@ describe('HomeComponent', () => {
           useValue: createSpyFromClass(ReadingMangasService, {
             observablePropsToSpyOn: ['readingMangasRefreshSubject']
           })
-        }
+        },
+        { provide: MatSnackBar, useValue: createSpyFromClass(MatSnackBar) }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
@@ -61,6 +65,7 @@ describe('HomeComponent', () => {
     component = fixture.componentInstance;
     breakpointObserver = TestBed.inject<any>(BreakpointObserver);
     readingMangasServiceSpy = TestBed.inject<any>(ReadingMangasService);
+    matSnackbar = TestBed.inject<any>(MatSnackBar);
     fixture.detectChanges();
   });
 
@@ -120,8 +125,21 @@ describe('HomeComponent', () => {
     });
   });
 
+  describe('onSearchResultMangas', () => {
+    it('should set searchResultMangas property when method is called', () => {
+      // GIVEN
+      const searchResultMangas = [bleachManga];
+
+      // WHEN
+      component.onSearchResultMangas(searchResultMangas);
+
+      // THEN
+      expect(component.searchResultMangas).toBe(searchResultMangas);
+    });
+  });
+
   describe('saveManga', () => {
-    it('should refresh mangas list, close sidevav and reset selected manga when manga was create from method createManga in MangasService', fakeAsync(() => {
+    it('should refresh mangas list, close sidenav and reset selected manga when manga was create from method createManga in MangasService', fakeAsync(() => {
       // GIVEN
 
       let sidenavSpy = createSpyFromClass(MatSidenav);
@@ -138,6 +156,37 @@ describe('HomeComponent', () => {
       expect(readingMangasServiceSpy.readingMangasRefreshSubject.next).toHaveBeenCalled();
       expect(sidenavSpy.close).toHaveBeenCalled();
       expect(component.selectedManga).toBeUndefined();
+      expect(matSnackbar.open).toHaveBeenCalledWith('Manga added', 'Close', jasmine.objectContaining({ duration: 2000 }));
     }));
+  });
+
+  describe('onClosedSidenav', () => {
+    it('should close sidenav and reset selectedManga and searchResultMangas', () => {
+      // GIVEN
+      let sidenavSpy = createSpyFromClass(MatSidenav);
+      component.sidenav = sidenavSpy;
+
+      // WHEN
+      component.onClosedSidenav();
+
+      // THEN
+      expect(sidenavSpy.close).toHaveBeenCalled();
+      expect(component.selectedManga).toBeUndefined();
+      expect(component.searchResultMangas).toEqual([]);
+    });
+  });
+
+  describe('logout', () => {
+    it('should call logout method from KeycloakService', () => {
+      // GIVEN
+      const keycloakServiceSpy = TestBed.inject(KeycloakService);
+      spyOn(keycloakServiceSpy, 'logout');
+
+      // WHEN
+      component.logout();
+
+      // THEN
+      expect(keycloakServiceSpy.logout).toHaveBeenCalled();
+    });
   });
 });
