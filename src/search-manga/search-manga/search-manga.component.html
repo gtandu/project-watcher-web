@@ -1,9 +1,0 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Rechercher un manga</mat-label>
-    <input type="text" placeholder="Pick one" aria-label="Rechercher votre manga" matInput [formControl]="searchFieldFormControl" [matAutocomplete]="auto" />
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let manga of mangaSuggested" [value]="manga"> {{manga.name}} </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>

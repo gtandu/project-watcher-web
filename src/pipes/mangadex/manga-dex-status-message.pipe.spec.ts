@@ -1,5 +1,4 @@
-import { MangaDexStatusMessagePipe } from './manga-dex-status-message.pipe';
-import { MangaDexStatus } from '../../models/mangadex/manga-dex-object';
+import { MangaDexStatus, MangaDexStatusMessagePipe } from './manga-dex-status-message.pipe';
 
 describe('MangaDexStatusMessagePipe', () => {
   it('create an instance', () => {

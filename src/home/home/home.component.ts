@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Manga } from '../../models/manga';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MangasService } from '../../services/mangas.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { KeycloakService } from 'keycloak-angular';
+import { ReadingFormat, ReadingManga } from '../../models/reading-manga';
+import { ReadingMangasService } from '../../services/reading-mangas.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -12,14 +14,16 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class HomeComponent implements OnInit {
   public selectedManga: Manga | undefined;
+  public searchResultMangas: Manga[] = [];
   public isMobile = false;
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
 
   constructor(
-    private readonly mangasService: MangasService,
+    private readonly readingMangasService: ReadingMangasService,
     private readonly responsive: BreakpointObserver,
-    private readonly keycloakService: KeycloakService
+    private readonly keycloakService: KeycloakService,
+    private readonly matSnackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -32,14 +36,29 @@ export class HomeComponent implements OnInit {
     this.selectedManga = selectedManga;
   }
 
+  public onSearchResultMangas(searchResultMangas: Manga[]) {
+    this.searchResultMangas = searchResultMangas;
+  }
+
   public saveManga(filledManga: Manga) {
-    this.mangasService.createManga(filledManga).subscribe(() => {
-      this.mangasService.mangaRefreshSubject.next();
-      this.sidenav?.close();
-      this.selectedManga = undefined;
+    const readingManga: ReadingManga = {
+      id: filledManga.id,
+      manga: filledManga,
+      readingFormat: ReadingFormat.VOLUME,
+      readingFormatStatusList: []
+    };
+    this.readingMangasService.addMediaToReadingList(readingManga).subscribe(() => {
+      this.readingMangasService.readingMangasRefreshSubject.next();
+      this.onClosedSidenav();
+      this.matSnackBar.open('Manga added', 'Close', { duration: 2000 });
     });
   }
 
+  public onClosedSidenav() {
+    this.sidenav?.close();
+    this.selectedManga = undefined;
+    this.searchResultMangas = [];
+  }
   public logout() {
     this.keycloakService.logout();
   }

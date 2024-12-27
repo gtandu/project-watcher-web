@@ -1,0 +1,9 @@
+<mat-selection-list #foundedMangaList (selectionChange)="updateSelectedManga($event)" [multiple]="false">
+  @for (foundedManga of searchResultMangas; track foundedManga) {
+    <mat-list-option [value]="foundedManga">
+      <!--      <img alt="" class="search-result-cover-picture" [ngSrc]="foundedManga.coverPictureUrl" height="200" width="100" priority/>-->
+      <span>{{ foundedManga.name }}</span>
+    </mat-list-option>
+  }
+</mat-selection-list>
+<mat-divider [inset]="true"></mat-divider>

@@ -3,7 +3,8 @@
     <div class="founded-manga-cover-and-rating-container">
       <div class="founded-manga-cover-container">
         <div>
-          <img class="founded-manga-cover" [src]="selectedManga.coverPictureUrl" alt="Manga cover" />
+          <img [ngSrc]="selectedManga.coverPictureUrl" alt="Manga cover" class="founded-manga-cover" height="100"
+               priority width="200" />
         </div>
       </div>
       <div class="founded-manga-rating-container">
@@ -25,9 +26,12 @@
       <mat-form-field>
         <mat-label i18n="Manga form's field state mat-label">Manga's state</mat-label>
         <mat-select formControlName="state">
-          <mat-option *ngFor="let status of mangaDexStatus | keyvalue: originalOrder" [value]="status.value">{{ status.value | mangaDexStatusMessage }}</mat-option>
+          <mat-option *ngFor="let status of mangaDexStatus | keyvalue: originalOrder"
+                      [value]="status.value">{{ status.value | mangaDexStatusMessage }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
+      <span>{{ getDescriptionFormControl().value }}</span>
       <mat-form-field>
         <mat-label i18n="Manga form's field comments mat-label">Comments</mat-label>
         <textarea matInput formControlName="comments"></textarea>

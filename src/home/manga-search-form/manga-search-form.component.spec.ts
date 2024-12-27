@@ -1,30 +1,33 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MangaSearchFormComponent } from './manga-search-form.component';
-import { MangaDexManagerService } from '../../managers/manga-dex-manager.service';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { EventEmitter } from '@angular/core';
-import { Manga } from '../../models/manga';
 import { bleachDigitalComicsManga, bleachManga, bleachOneShotManga } from '../../utils/tests/mock-data';
 import { KeycloakService } from 'keycloak-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MangasService } from '../../services/mangas.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('MangaSearchFormComponent', () => {
   let component: MangaSearchFormComponent;
   let fixture: ComponentFixture<MangaSearchFormComponent>;
-  let mangaDexManagerServiceSpy: Spy<MangaDexManagerService>;
+  let mangasServiceSpy: Spy<MangasService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MangaSearchFormComponent],
-      providers: [KeycloakService,
-        { provide: MangaDexManagerService, useValue: createSpyFromClass(MangaDexManagerService) }]
+      imports: [HttpClientTestingModule, ReactiveFormsModule],
+      providers: [
+        KeycloakService,
+        {
+          provide: MangasService,
+          useValue: createSpyFromClass(MangasService)
+        }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MangaSearchFormComponent);
     component = fixture.componentInstance;
 
-    mangaDexManagerServiceSpy = TestBed.inject<any>(MangaDexManagerService);
+    mangasServiceSpy = TestBed.inject<any>(MangasService);
   });
 
   it('should create', () => {
@@ -40,42 +43,27 @@ describe('MangaSearchFormComponent', () => {
       component.searchFormControl.patchValue('Bl');
 
       // THEN
-      expect(component.searchResultMangas).toEqual([]);
+      component.searchResultMangas.subscribe((result) => {
+        expect(result).toEqual([]);
+      });
     });
 
-    it('should return empty list when user search keys are equals or more than 3 characters', () => {
+    it('should return list of mangas when user search keys are equals or more than 3 characters', () => {
       // GIVEN
       let expectedMangas = [{ ...bleachManga }, { ...bleachDigitalComicsManga }, { ...bleachOneShotManga }];
       const searchKey = 'Ble';
 
-      mangaDexManagerServiceSpy.searchMangaByTitle.and.nextWith(expectedMangas);
+      mangasServiceSpy.searchMangaByTitle.and.nextWith(expectedMangas);
       component.ngOnInit();
 
       // WHEN
       component.searchFormControl.patchValue(searchKey);
 
       // THEN
-      expect(component.searchResultMangas).toEqual(expectedMangas);
-      expect(mangaDexManagerServiceSpy.searchMangaByTitle).toHaveBeenCalledWith(searchKey);
-    });
-  });
-
-  describe('updateSelectedManga', () => {
-    it('should emit selected manga when user select manga in autocomplete list', () => {
-      // GIVEN
-      const event: MatAutocompleteSelectedEvent = {
-        option: {
-          value: { ...bleachManga }
-        }
-      } as MatAutocompleteSelectedEvent;
-
-      component.selectedManga = createSpyFromClass(EventEmitter<Manga>);
-
-      // WHEN
-      component.updateSelectedManga(event);
-
-      // THEN
-      expect(component.selectedManga.emit).toHaveBeenCalledWith(event.option.value);
+      component.searchResultMangas.subscribe((result) => {
+        expect(result).toEqual(expectedMangas);
+        expect(mangasServiceSpy.searchMangaByTitle).toHaveBeenCalledWith(searchKey);
+      });
     });
   });
 
@@ -86,7 +74,6 @@ describe('MangaSearchFormComponent', () => {
       const manga = { ...bleachManga, name: expectedMangaName };
 
       // WHEN
-
       let mangaName = component.displayMangaName(manga);
 
       // THEN

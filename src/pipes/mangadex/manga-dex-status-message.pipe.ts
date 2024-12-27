@@ -1,6 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MangaDexStatus } from "../../models/mangadex/manga-dex-object";
 
+export enum MangaDexStatus {
+  ONGOING = 'ongoing',
+  COMPLETED = 'completed',
+  HIATUS = 'hiatus',
+  CANCELLED = 'cancelled'
+}
 @Pipe({
   name: 'mangaDexStatusMessage',
   standalone: true
