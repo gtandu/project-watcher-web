@@ -8,7 +8,8 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, AppComponent] // Add RouterTestingModule to imports
+      declarations: [AppComponent],
+      imports: [RouterTestingModule] // Add RouterTestingModule to imports
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);

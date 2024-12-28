@@ -19,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MangaSearchResultsComponent } from './manga-search-result/manga-search-results.component';
 
 @NgModule({
+  declarations: [HomeComponent],
   exports: [HomeComponent],
   imports: [
     CommonModule,
@@ -37,8 +38,7 @@ import { MangaSearchResultsComponent } from './manga-search-result/manga-search-
     MangaListComponent,
     MatToolbarModule,
     MatMenuModule,
-    MangaSearchResultsComponent,
-    HomeComponent
+    MangaSearchResultsComponent
   ]
 })
 export class HomeModule {}
