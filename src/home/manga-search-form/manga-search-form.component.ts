@@ -12,7 +12,6 @@ import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-manga-search-form',
-  standalone: true,
   imports: [MatAutocompleteModule, MatFormFieldModule, MatIconModule, MatInputModule, MatOptionModule, ReactiveFormsModule, MatListModule],
   templateUrl: './manga-search-form.component.html',
   styleUrl: './manga-search-form.component.scss'

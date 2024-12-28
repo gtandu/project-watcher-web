@@ -12,7 +12,6 @@ import { MangaDexStatus, MangaDexStatusMessagePipe } from '../../pipes/mangadex/
 
 @Component({
   selector: 'app-manga-form-fields',
-  standalone: true,
   imports: [
     MatButtonModule,
     MatFormFieldModule,

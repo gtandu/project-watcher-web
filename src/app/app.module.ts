@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_INITIALIZER, ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
+import { ApplicationRef, DoBootstrap, inject, NgModule, provideAppInitializer } from '@angular/core';
 import { HomeModule } from '../home/home.module';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializer } from '../utils/app-init';
@@ -13,12 +13,10 @@ import { AppComponent } from './app.component';
   declarations: [],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, KeycloakAngularModule, HomeModule, RouterOutlet],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializer,
-      deps: [KeycloakService],
-      multi: true
-    },
+    provideAppInitializer(() => {
+      const initializerFn = initializer(inject(KeycloakService));
+      return initializerFn();
+    }),
     provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: []

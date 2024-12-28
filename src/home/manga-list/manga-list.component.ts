@@ -7,7 +7,6 @@ import { ReadingMangasService } from '../../services/reading-mangas.service';
 
 @Component({
   selector: 'app-manga-list',
-  standalone: true,
   imports: [MatProgressBarModule, NgForOf],
   templateUrl: './manga-list.component.html',
   styleUrl: './manga-list.component.scss'
