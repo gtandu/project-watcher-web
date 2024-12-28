@@ -1,16 +1,44 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Manga } from '../../models/manga';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { KeycloakService } from 'keycloak-angular';
 import { ReadingFormat, ReadingManga } from '../../models/reading-manga';
 import { ReadingMangasService } from '../../services/reading-mangas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatIcon } from '@angular/material/icon';
+import { NgClass, NgIf } from '@angular/common';
+import { MangaSearchFormComponent } from '../manga-search-form/manga-search-form.component';
+import { MangaSearchResultsComponent } from '../manga-search-result/manga-search-results.component';
+import { MangaFormFieldsComponent } from '../manga-form-fields/manga-form-fields.component';
+import { MangaListComponent } from '../manga-list/manga-list.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  standalone: true,
+  imports: [
+    MatToolbar,
+    MatButton,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem,
+    MatIcon,
+    MatSidenavContainer,
+    MatSidenav,
+    NgClass,
+    MatIconButton,
+    NgIf,
+    MangaSearchFormComponent,
+    MangaSearchResultsComponent,
+    MangaFormFieldsComponent,
+    MatSidenavContent,
+    MangaListComponent
+  ]
 })
 export class HomeComponent implements OnInit {
   public selectedManga: Manga | undefined;
