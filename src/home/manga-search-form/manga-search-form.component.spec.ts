@@ -3,9 +3,10 @@ import { MangaSearchFormComponent } from './manga-search-form.component';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { bleachDigitalComicsManga, bleachManga, bleachOneShotManga } from '../../utils/tests/mock-data';
 import { KeycloakService } from 'keycloak-angular';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MangasService } from '../../services/mangas.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('MangaSearchFormComponent', () => {
   let component: MangaSearchFormComponent;
@@ -14,13 +15,15 @@ describe('MangaSearchFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ReactiveFormsModule],
+      imports: [ReactiveFormsModule],
       providers: [
         KeycloakService,
         {
           provide: MangasService,
           useValue: createSpyFromClass(MangasService)
-        }
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
       ]
     }).compileComponents();
 
