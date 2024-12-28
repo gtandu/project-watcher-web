@@ -45,8 +45,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomeComponent, MatSidenav],
-      imports: [BrowserAnimationsModule, MatMenuModule],
+      declarations: [HomeComponent],
+      imports: [BrowserAnimationsModule, MatMenuModule, MatSidenav],
       providers: [
         { provide: BreakpointObserver, useClass: MockBreakpointObserver },
         { provide: KeycloakService },
