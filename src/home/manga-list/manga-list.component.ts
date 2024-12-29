@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NgForOf } from '@angular/common';
 import { Manga } from '../../models/manga';
@@ -13,8 +13,7 @@ import { ReadingMangasService } from '../../services/reading-mangas.service';
 })
 export class MangaListComponent implements OnInit {
   public mangas: Manga[] = [];
-
-  constructor(private readonly readingMediasService: ReadingMangasService) {}
+  private readonly readingMediasService = inject(ReadingMangasService);
 
   ngOnInit() {
     this.readingMediasService.getAllReadingMangasByUserId().subscribe((readingMangas) => {

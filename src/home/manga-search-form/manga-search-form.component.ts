@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,7 +20,8 @@ export class MangaSearchFormComponent implements OnInit {
   public searchFormControl = new FormControl('');
   @Output()
   public searchResultMangas: EventEmitter<Manga[]> = new EventEmitter<Manga[]>();
-  constructor(private readonly mangasService: MangasService) {}
+  private readonly mangasService = inject(MangasService);
+
   ngOnInit() {
     const searchKeyMin = 3;
 
