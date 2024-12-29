@@ -4,7 +4,6 @@ import { Manga } from '../../models/manga';
 
 @Component({
   selector: 'app-manga-search-results',
-  standalone: true,
   imports: [MatListModule],
   templateUrl: './manga-search-results.component.html',
   styleUrl: './manga-search-results.component.scss'

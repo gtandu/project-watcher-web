@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -11,8 +11,7 @@ import { PageableResultSearch } from '../models/pageable-result-search';
 export class ReadingMangasService {
   public readingMangasRefreshSubject = new Subject<void>();
   private readonly BACKEND_ENDPOINT = `${environment.BACKEND_ENDPOINT_API_V1}/reading-mangas`;
-
-  constructor(private readonly http: HttpClient) {}
+  private readonly http: HttpClient = inject(HttpClient);
 
   public getAllReadingMangasByUserId(): Observable<PageableResultSearch<ReadingManga>> {
     return this.http.get<PageableResultSearch<ReadingManga>>(this.BACKEND_ENDPOINT);

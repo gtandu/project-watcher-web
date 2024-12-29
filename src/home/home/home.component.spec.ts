@@ -5,13 +5,13 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { BehaviorSubject, Observable, skip, Subject } from 'rxjs';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { bleachManga, bleachReadingManga, bleachReadingMangaSaved } from '../../utils/tests/mock-data';
+import { bleachManga, bleachOneShotReadingManga, bleachReadingManga, bleachReadingMangaSaved } from '../../utils/tests/mock-data';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { KeycloakService } from 'keycloak-angular';
 import { ReadingMangasService } from '../../services/reading-mangas.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Keycloak from 'keycloak-js';
 
 class MockBreakpointObserver {
   private state: BehaviorSubject<BreakpointState> = new BehaviorSubject({} as BreakpointState);
@@ -45,11 +45,15 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomeComponent],
       imports: [BrowserAnimationsModule, MatMenuModule, MatSidenav],
       providers: [
         { provide: BreakpointObserver, useClass: MockBreakpointObserver },
-        { provide: KeycloakService },
+        {
+          provide: Keycloak,
+          useValue: createSpyFromClass(Keycloak, {
+            methodsToSpyOn: ['logout']
+          })
+        },
         {
           provide: ReadingMangasService,
           useValue: createSpyFromClass(ReadingMangasService, {
@@ -66,6 +70,9 @@ describe('HomeComponent', () => {
     breakpointObserver = TestBed.inject<any>(BreakpointObserver);
     readingMangasServiceSpy = TestBed.inject<any>(ReadingMangasService);
     matSnackbar = TestBed.inject<any>(MatSnackBar);
+
+    readingMangasServiceSpy.getAllReadingMangasByUserId.and.nextWith({ content: [{ ...bleachReadingManga }, { ...bleachOneShotReadingManga }] });
+
     fixture.detectChanges();
   });
 
@@ -179,8 +186,7 @@ describe('HomeComponent', () => {
   describe('logout', () => {
     it('should call logout method from KeycloakService', () => {
       // GIVEN
-      const keycloakServiceSpy = TestBed.inject(KeycloakService);
-      spyOn(keycloakServiceSpy, 'logout');
+      const keycloakServiceSpy: Spy<Keycloak> = TestBed.inject<any>(Keycloak);
 
       // WHEN
       component.logout();

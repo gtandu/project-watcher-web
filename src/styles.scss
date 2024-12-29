@@ -1,7 +1,8 @@
 @use '@angular/material' as mat;
-@include mat.core();
-/* You can add global styles to this file, and also import other style files */
-@import 'node_modules/css-star-rating/css/star-rating.css';
+@use 'node_modules/css-star-rating/css/star-rating.css';
+
+@include mat.elevation-classes();
+@include mat.app-background();
 
 @font-face {
   font-family: 'Poppins';

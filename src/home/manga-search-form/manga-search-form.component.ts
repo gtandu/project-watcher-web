@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,6 @@ import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-manga-search-form',
-  standalone: true,
   imports: [MatAutocompleteModule, MatFormFieldModule, MatIconModule, MatInputModule, MatOptionModule, ReactiveFormsModule, MatListModule],
   templateUrl: './manga-search-form.component.html',
   styleUrl: './manga-search-form.component.scss'
@@ -21,7 +20,8 @@ export class MangaSearchFormComponent implements OnInit {
   public searchFormControl = new FormControl('');
   @Output()
   public searchResultMangas: EventEmitter<Manga[]> = new EventEmitter<Manga[]>();
-  constructor(private readonly mangasService: MangasService) {}
+  private readonly mangasService = inject(MangasService);
+
   ngOnInit() {
     const searchKeyMin = 3;
 
