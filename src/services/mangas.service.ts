@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Manga } from '../models/manga';
 import { environment } from '../environments/environment';
@@ -10,8 +10,7 @@ import { environment } from '../environments/environment';
 export class MangasService {
   private readonly BACKEND_ENDPOINT = `${environment.BACKEND_ENDPOINT_API_V1}/mangas`;
   private readonly DEFAULT_PAGE_SIZE = 10;
-
-  constructor(private readonly http: HttpClient) {}
+  private readonly http: HttpClient = inject(HttpClient);
 
   public createManga(manga: Manga): Observable<Manga> {
     return this.http.put<Manga>(this.BACKEND_ENDPOINT, manga);

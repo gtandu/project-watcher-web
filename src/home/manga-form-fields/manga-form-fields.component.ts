@@ -35,20 +35,22 @@ export class MangaFormFieldsComponent implements OnChanges {
   @Output()
   public filledManga: EventEmitter<Manga> = new EventEmitter<Manga>();
 
-  public mangaForm: FormGroup = this.formBuilder.group({
-    name: ['', Validators.required],
-    description: [''],
-    state: [''],
-    comments: [''],
-    readingSource: [''],
-    rate: [0],
-    coverPictureUrl: [''],
-    releasedDate: ['']
-  });
+  public mangaForm: FormGroup;
 
   public mangaDexStatus = MangaDexStatus;
 
-  constructor(private readonly formBuilder: FormBuilder) {}
+  constructor(private readonly formBuilder: FormBuilder) {
+    this.mangaForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: [''],
+      state: [''],
+      comments: [''],
+      readingSource: [''],
+      rate: [0],
+      coverPictureUrl: [''],
+      releasedDate: ['']
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     const selectedMangaChange: SimpleChange = changes['selectedManga'];
